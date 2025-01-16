@@ -5,7 +5,7 @@ import { useSelectedExercise } from "../../context/useSelectedExercise";
 
 import { useWorkoutId } from "../../context/useWorkoutId";
 
-const socket = io("my-gym-app-server-ps75ihcfz-costa404s-projects.vercel.app");
+const socket = io("my-gym-app-server.vercel.app");
 
 export const useAddExerciseInputs = () => {
   const { selectedExercise } = useSelectedExercise();
