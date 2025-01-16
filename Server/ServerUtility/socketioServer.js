@@ -1,5 +1,5 @@
 import { Server as SocketIO } from "socket.io";
-// import ExerciseStats from "../configProject/Models/ExerciseStats.js"; // Certifique-se de que o caminho do modelo está correto
+// import ExerciseStats from "../configProject/Models/ExerciseStats.js";
 
 const createSocketServer = (httpServer) => {
   const io = new SocketIO(httpServer, {
