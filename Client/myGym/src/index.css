@@ -1,0 +1,135 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px;
+  z-index: 1001;
+  width: 20%;
+}
+
+.modal-signup {
+  transform: translate(-10%, -50%);
+}
+
+html {
+  font-size: 62.5%;
+}
+
+.hoverExerciseList:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.hover:hover {
+  cursor: pointer;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* =====================
+
+media querys
+
+===================== */
+@media screen and (max-width: 934px) {
+  body {
+    background-color: lightgray;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .mainModalMobile {
+    min-width: 100% !important;
+    max-width: 30rem !important;
+
+    top: 10%;
+    left: 0;
+    transform: translate(0%, 0%);
+  }
+
+  .portExercisesMobile {
+    width: 100% !important;
+  }
+
+  .contentHomepage {
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+    padding-top: 25%;
+  }
+  .contentHomepageContainerBottom {
+    min-width: 100% !important;
+  }
+
+  .contentHomepageContainerBottom > h1 {
+    font-size: 3rem !important;
+    width: 100% !important;
+    text-align: center;
+  }
+
+  .imgNotNatty {
+    width: 70% !important;
+    max-width: 30rem !important;
+    margin-left: 5rem;
+  }
+
+  .titleMyGymMobile {
+    display: none;
+  }
+
+  .navbarMobile {
+    padding-right: 2rem !important;
+    padding-left: 2rem !important;
+  }
+
+  .inputsAuth {
+    transform: translate(0%, 40%) !important;
+  }
+}
+/* =====================
+
+ loading
+
+ ===================== */
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
