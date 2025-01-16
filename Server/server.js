@@ -23,13 +23,12 @@ const app = express();
 // Criar o servidor HTTP
 const httpServer = createServer(app);
 
-// No arquivo principal do servidor (onde você configurou o Express)
 app.use(
   cors({
-    origin: "https://my-gym-app-client.vercel.app", // Substitua pela URL do seu frontend no Vercel
-    methods: ["GET", "POST", "OPTIONS"], // Métodos que você permite
-    allowedHeaders: ["Content-Type", "Authorization"], // Cabeçalhos permitidos
-    credentials: true, // Se você usar cookies de autenticação
+    origin: "my-gym-app-client.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
   })
 );
 
