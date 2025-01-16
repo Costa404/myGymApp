@@ -41,6 +41,10 @@ app.use("/graphql", apolloServerMiddleware(apolloServer));
 
 const io = createSocketServer(httpServer);
 
-httpServer.listen(4000, () => {
-  console.log(`🚀 Server running at http://localhost:4000/graphql`);
+// httpServer.listen(4000, () => {
+//   console.log(`🚀 Server running at http://localhost:4000/graphql`);
+// });
+
+app.listen(process.env.PORT || 4000, () => {
+  console.log(`Servidor em execução na porta ${process.env.PORT || 4000}`);
 });
