@@ -17,7 +17,7 @@ export const createApolloServer = async (httpServer) => {
       return { user };
     },
     cors: {
-      origin: "http://localhost:5173", // Permite o frontend na porta 5173
+      origin: "*", // Permite o frontend na porta 5173
       methods: ["GET", "POST", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true, // Necessário se você estiver utilizando cookies de autenticação
