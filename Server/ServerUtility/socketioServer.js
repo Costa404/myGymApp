@@ -1,14 +1,15 @@
 import { Server as SocketIO } from "socket.io";
-// import ExerciseStats from "../configProject/Models/ExerciseStats.js";
+
+const FRONTEND_URL =
+  process.env.VITE_FRONTEND_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://my-gym-app-client.vercel.app"
+    : "http://localhost:5173");
 
 const createSocketServer = (httpServer) => {
   const io = new SocketIO(httpServer, {
     cors: {
-      origin: [
-        "https://my-gym-app-client.vercel.app",
-        "https://localhost:3000",
-      ],
-
+      origin: [FRONTEND_URL],
       methods: ["GET", "POST"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
@@ -33,17 +34,7 @@ const createSocketServer = (httpServer) => {
         }
 
         console.log("workoutId", workoutId);
-        // const newExerciseStats = new ExerciseStats({
-        //   exerciseName,
-        //   reps,
-        //   weight,
-        //   workoutId,
-        // });
 
-        // const savedStats = await newExerciseStats.save();
-        // console.log("Dados de exercício salvos:", savedStats);
-
-        // socket.emit("exerciseStatsSaved", { success: true, stats: savedStats });
         socket.emit("exerciseStatsSaved", { success: true });
       } catch (error) {
         console.error("Erro ao salvar os dados de exercício:", error);

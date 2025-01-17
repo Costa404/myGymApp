@@ -23,9 +23,15 @@ const app = express();
 // Criar o servidor HTTP
 const httpServer = createServer(app);
 
+const FRONTEND_URL =
+  process.env.VITE_FRONTEND_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://my-gym-app-client.vercel.app"
+    : "http://localhost:5173");
+
 app.use(
   cors({
-    origin: ["https://my-gym-app-client.vercel.app", "https://localhost:3000"],
+    origin: FRONTEND_URL,
 
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
