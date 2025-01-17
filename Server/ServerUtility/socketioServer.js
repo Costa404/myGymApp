@@ -7,6 +7,8 @@ const createSocketServer = (httpServer) => {
       origin: ["https://my-gym-app-client.vercel.app", "http://localhost:3000"],
 
       methods: ["GET", "POST"],
+      allowedHeaders: ["Content-Type", "Authorization"],
+      credentials: true,
     },
   });
 
