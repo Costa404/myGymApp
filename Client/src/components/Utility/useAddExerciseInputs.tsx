@@ -17,11 +17,9 @@ export const useAddExerciseInputs = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    // Criar conexão do Socket.IO apenas quando o componente monta
     const newSocket = io("https://mygymapp.onrender.com");
     setSocket(newSocket);
 
-    // Cleanup: desconectar quando o componente desmontar
     return () => {
       newSocket.disconnect();
     };
