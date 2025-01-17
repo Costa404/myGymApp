@@ -23,15 +23,15 @@ const app = express();
 // Criar o servidor HTTP
 const httpServer = createServer(app);
 
-const FRONTEND_URL =
-  process.env.VITE_FRONTEND_URL ||
-  (process.env.NODE_ENV === "production"
-    ? "https://my-gym-app-client.vercel.app"
-    : "http://localhost:5173");
+// const FRONTEND_URL =
+//   process.env.VITE_FRONTEND_URL ||
+//   (process.env.NODE_ENV === "production"
+//     ? "https://my-gym-app-client.vercel.app"
+//     : "http://localhost:5173");
 
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: "http://localhost:5173",
 
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -48,10 +48,10 @@ app.use("/graphql", apolloServerMiddleware(apolloServer));
 
 const io = createSocketServer(httpServer);
 
-// httpServer.listen(4000, () => {
-//   console.log(`🚀 Server running at http://localhost:4000/graphql`);
-// });
-
-app.listen(process.env.PORT || 4000, () => {
-  console.log(`Servidor em execução na porta ${process.env.PORT || 4000}`);
+httpServer.listen(4000, () => {
+  console.log(`🚀 Server running at http://localhost:4000/graphql`);
 });
+
+// app.listen(process.env.PORT || 4000, () => {
+//   console.log(`Servidor em execução na porta ${process.env.PORT || 4001}`);
+// });

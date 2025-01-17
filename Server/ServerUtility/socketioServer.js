@@ -1,15 +1,15 @@
 import { Server as SocketIO } from "socket.io";
 
-const FRONTEND_URL =
-  process.env.VITE_FRONTEND_URL ||
-  (process.env.NODE_ENV === "production"
-    ? "https://my-gym-app-client.vercel.app"
-    : "http://localhost:5173");
+// const FRONTEND_URL =
+//   process.env.VITE_FRONTEND_URL ||
+//   (process.env.NODE_ENV === "production"
+//     ? "https://my-gym-app-client.vercel.app"
+//     : "http://localhost:5173");
 
 const createSocketServer = (httpServer) => {
   const io = new SocketIO(httpServer, {
     cors: {
-      origin: [FRONTEND_URL],
+      origin: "http://localhost:5173",
       methods: ["GET", "POST"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
