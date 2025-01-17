@@ -17,9 +17,10 @@ export const useAddExerciseInputs = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("https://mygymapp.onrender.com", {
+    const newSocket = io("wss://mygymapp.onrender.com", {
       transports: ["websocket", "polling"],
     });
+
     setSocket(newSocket);
 
     return () => {
