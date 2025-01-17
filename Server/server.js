@@ -29,16 +29,23 @@ const httpServer = createServer(app);
 //     ? "https://my-gym-app-client.vercel.app"
 //     : "http://localhost:5173");
 
+const allowedOrigins = [
+  "https://my-gym-app-client.vercel.app",
+  "https://my-gym-app-client-6e0oo4ktu-costa404s-projects.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://my-gym-app-client.vercel.app/",
-
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
   })
 );
-
 app.use(bodyParser.json());
 
 // app.use(authMiddleware);
