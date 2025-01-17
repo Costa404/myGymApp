@@ -1,14 +1,11 @@
-import { useState } from "react";
-
-import { io } from "socket.io-client";
+import { useState, useEffect } from "react";
+import { io, Socket } from "socket.io-client";
 import { useSelectedExercise } from "../../context/useSelectedExercise";
-
 import { useWorkoutId } from "../../context/useWorkoutId";
-
-const socket = io("my-gym-app-server.vercel.app");
 
 export const useAddExerciseInputs = () => {
   const { selectedExercise } = useSelectedExercise();
+  const { workoutId } = useWorkoutId();
 
   const [formData, setFormData] = useState({ reps: "", weight: "" });
   const [loading, setLoading] = useState(false);
@@ -16,7 +13,19 @@ export const useAddExerciseInputs = () => {
   const [submittedStats, setSubmittedStats] = useState<
     { reps: string; weight: string; exerciseName: string }[] | null
   >(null);
-  const { workoutId } = useWorkoutId();
+
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  useEffect(() => {
+    // Criar conexão do Socket.IO apenas quando o componente monta
+    const newSocket = io("https://mygymapp.onrender.com");
+    setSocket(newSocket);
+
+    // Cleanup: desconectar quando o componente desmontar
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -38,23 +47,29 @@ export const useAddExerciseInputs = () => {
       reps: formData.reps,
       weight: formData.weight,
       exerciseName: selectedExercise.exerciseName,
+      workoutId, // Incluí workoutId para melhor organização no backend
     };
 
-    console.log(workoutId);
+    console.log("Enviando:", exerciseData);
 
     try {
       setLoading(true);
-      socket.emit("exerciseStatsUpdated", exerciseData);
+
+      if (socket) {
+        socket.emit("exerciseStatsUpdated", exerciseData);
+      } else {
+        console.error("Socket not connected!");
+      }
 
       setSubmittedStats((prevStats) =>
         prevStats ? [...prevStats, exerciseData] : [exerciseData]
       );
 
       setFormData({ reps: "", weight: "" });
-      setLoading(false);
     } catch (err) {
       console.error(err);
       setError(new Error("Erro ao enviar dados"));
+    } finally {
       setLoading(false);
     }
   };
