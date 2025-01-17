@@ -17,7 +17,9 @@ export const useAddExerciseInputs = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("https://mygymapp.onrender.com");
+    const newSocket = io("https://mygymapp.onrender.com", {
+      transports: ["websocket", "polling"],
+    });
     setSocket(newSocket);
 
     return () => {
@@ -45,7 +47,7 @@ export const useAddExerciseInputs = () => {
       reps: formData.reps,
       weight: formData.weight,
       exerciseName: selectedExercise.exerciseName,
-      workoutId, // Incluí workoutId para melhor organização no backend
+      workoutId,
     };
 
     console.log("Enviando:", exerciseData);
