@@ -3,7 +3,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { Observable, ApolloLink, FetchResult } from "@apollo/client";
 import createClient from "socket.io-client";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
 
 const httpLink = new HttpLink({
   uri: `${API_URL}/graphql`,

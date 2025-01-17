@@ -17,17 +17,25 @@ export const useAddExerciseInputs = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const newSocket = io("wss://mygymapp.onrender.com", {
+    const BACKEND_URL = "https://mygymapp.onrender.com";
+    const newSocket = io(BACKEND_URL, {
       transports: ["websocket", "polling"],
     });
 
     setSocket(newSocket);
 
+    newSocket.on("connect", () => {
+      console.log("Conectado ao servidor WebSocket");
+    });
+
+    newSocket.on("connect_error", (err) => {
+      console.error("Erro na conexão WebSocket:", err);
+    });
+
     return () => {
       newSocket.disconnect();
     };
   }, []);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
