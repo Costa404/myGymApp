@@ -3,7 +3,12 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { Observable, ApolloLink, FetchResult } from "@apollo/client";
 import createClient from "socket.io-client";
 
-const API_URL = process.env.NEXT_PUBLIC_BACKEND_URL;
+const API_URL =
+  process.env.NODE_ENV === "production"
+    ? process.env.VITE_APP_BACKEND_URL
+    : process.env.VITE_APP_BACKEND_URL || "http://localhost:5173";
+
+console.log("API URL:", API_URL);
 
 const httpLink = new HttpLink({
   uri: `${API_URL}/graphql`,

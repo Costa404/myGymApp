@@ -17,7 +17,7 @@ export const useAddExerciseInputs = () => {
   const [socket, setSocket] = useState<Socket | null>(null);
 
   useEffect(() => {
-    const BACKEND_URL = "https://mygymapp.onrender.com";
+    const BACKEND_URL = process.env.REACT_APP_BACKEND_URL; // Variável do .env ou .env.production
     const newSocket = io(BACKEND_URL, {
       transports: ["websocket", "polling"],
     });
