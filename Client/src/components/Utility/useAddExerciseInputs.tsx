@@ -98,7 +98,9 @@ import { useState } from "react";
 import { io } from "socket.io-client";
 import { useSelectedExercise } from "../../context/useSelectedExercise";
 import { useWorkoutId } from "../../context/useWorkoutId";
-const socket = io("https://mygymapp.onrender.com");
+const socket = io(
+  "https://mygymapp.onrender.com/socket.io/?EIO=4&transport=polling&t=a6xhkjss"
+);
 export const useAddExerciseInputs = () => {
   const { selectedExercise } = useSelectedExercise();
   const [formData, setFormData] = useState({ reps: "", weight: "" });

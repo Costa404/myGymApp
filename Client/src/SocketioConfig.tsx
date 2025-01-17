@@ -3,7 +3,7 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import { Observable, ApolloLink, FetchResult } from "@apollo/client";
 import createClient from "socket.io-client";
 const httpLink = new HttpLink({
-  uri: "https://mygymapp.onrender.com",
+  uri: "https://mygymapp.onrender.com/socket.io/?EIO=4&transport=polling&t=a6xhkjss",
   headers: {
     Authorization: `Bearer ${localStorage.getItem("authToken")}`,
   },
