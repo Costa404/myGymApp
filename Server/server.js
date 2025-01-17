@@ -31,7 +31,7 @@ const httpServer = createServer(app);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://my-gym-app-client.vercel.app/",
 
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
