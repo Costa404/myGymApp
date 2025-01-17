@@ -4,7 +4,8 @@ import { Server as SocketIO } from "socket.io";
 const createSocketServer = (httpServer) => {
   const io = new SocketIO(httpServer, {
     cors: {
-      origin: "my-gym-app-client.vercel.app",
+      origin: "https://my-gym-app-client.vercel.app",
+
       methods: ["GET", "POST"],
     },
   });
